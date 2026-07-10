@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+
+# Runtime dependencies used during app startup
+sqlalchemy
+psycopg[binary]
+alembic
+pgvector
+redis
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1
+python-multipart
+email-validator

@@ -1,0 +1,81 @@
+# =========================
+# FastAPI Backend
+# =========================
+fastapi
+uvicorn[standard]
+
+# Configuration
+pydantic
+pydantic-settings
+python-dotenv
+
+# File Uploads
+python-multipart
+
+# =========================
+# Database
+# =========================
+sqlalchemy
+psycopg[binary]
+alembic
+
+# PostgreSQL vector extension
+pgvector
+
+# =========================
+# Cache
+# =========================
+redis
+
+# =========================
+# Authentication
+# =========================
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1
+
+# =========================
+# Document Processing
+# =========================
+pymupdf
+python-docx
+openpyxl
+python-pptx
+
+# =========================
+# AI / RAG
+# =========================
+langchain
+langchain-community
+langchain-openai
+langchain-postgres
+langgraph
+
+# Embeddings
+sentence-transformers
+torch
+
+# Token counting
+tiktoken
+
+# HTTP Client
+httpx
+
+# Validation
+email-validator
+
+# Logging
+loguru
+
+# =========================
+# Testing
+# =========================
+pytest
+pytest-asyncio
+
+# =========================
+# Development
+# =========================
+black
+isort
+ruff
