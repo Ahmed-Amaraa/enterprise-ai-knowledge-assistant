@@ -1,6 +1,6 @@
 import os
 
-SECRET_KEY = ""
+SECRET_KEY = os.getenv("SECRET_KEY", "")
 ALGORITHM = "HS256"
 
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -20,7 +20,10 @@ CHUNK_OVERLAP = 100
 COLLECTION_NAME = "enterprise_documents"
 QDRANT_HOST = os.getenv("QDRANT_HOST", "localhost")
 QDRANT_PORT = int(os.getenv("QDRANT_PORT", "6333"))
-EMBEDDING_SERVICE_URL = "http://embedding-service:8001"
+EMBEDDING_SERVICE_URL = os.getenv(
+    "EMBEDDING_SERVICE_URL",
+    "http://localhost:8001",
+)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-HF_Token = os.getenv("HF_Token")
+HF_TOKEN = os.getenv("HF_TOKEN")
