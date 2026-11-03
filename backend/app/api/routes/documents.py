@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Depends, HTTPException, status
+from fastapi import APIRouter, UploadFile, File, Depends, HTTPException, status, BackgroundTasks
 from sqlalchemy.orm import Session
 
 from app.dependencies.auth import get_current_user
@@ -10,6 +10,7 @@ router = APIRouter(prefix="/documents", tags=["Documents"])
 
 @router.post("/upload", response_model=DocumentResponse)
 async def upload_document(
+    background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     current_user=Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -17,7 +18,9 @@ async def upload_document(
     service = DocumentService(db)
 
     try:
-        return service.upload_document(file, user_id=current_user.id)
+        document = service.upload_document(file, user_id=current_user.id)
+        background_tasks.add_task(service.process_document_background, document.id)
+        return document
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

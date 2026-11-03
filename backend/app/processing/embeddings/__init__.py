@@ -1,0 +1,1 @@
+from ...services.embedding_service import generate_embeddings

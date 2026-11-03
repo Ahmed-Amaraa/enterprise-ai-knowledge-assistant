@@ -15,6 +15,7 @@ class Message(Base):
 
     role: Mapped[str] = mapped_column(String)  # user / assistant
     content: Mapped[str] = mapped_column(Text)
+    feedback: Mapped[str | None] = mapped_column(String(16), nullable=True)
 
     tokens_used: Mapped[int] = mapped_column(Integer, nullable=True)
     latency_ms: Mapped[int] = mapped_column(Integer, nullable=True)

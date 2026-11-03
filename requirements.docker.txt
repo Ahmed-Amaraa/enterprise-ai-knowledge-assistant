@@ -12,3 +12,11 @@ passlib[bcrypt]
 bcrypt==4.0.1
 python-multipart
 email-validator
+pymupdf
+python-docx
+openpyxl
+python-pptx
+langchain-text-splitters
+qdrant-client
+httpx
+google-genai

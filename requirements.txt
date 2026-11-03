@@ -79,3 +79,14 @@ pytest-asyncio
 black
 isort
 ruff
+
+
+qdrant-client
+
+google-genai
+
+huggingface_hub
+
+pytesseract 
+
+pillow

@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from app.parsers.pdf_parser import extract_pdf_text
-from app.parsers.docx_parser import extract_docx_text
-from app.parsers.pptx_parser import extract_pptx_text
-from app.parsers.excel_parser import extract_excel_text
+from app.processing.parsers.pdf_parser import extract_pdf_text
+from app.processing.parsers.docx_parser import extract_docx_text
+from app.processing.parsers.pptx_parser import extract_pptx_text
+from app.processing.parsers.excel_parser import extract_excel_text
 
 
 SUPPORTED_PARSERS = {

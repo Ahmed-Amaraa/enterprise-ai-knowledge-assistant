@@ -2,10 +2,9 @@ from pydantic import BaseModel, EmailStr
 from datetime import datetime
 
 
-
 class UserCreate(BaseModel):
     email: EmailStr
-    username: str
+    username: str | None = None
     password: str
     full_name: str | None = None
 

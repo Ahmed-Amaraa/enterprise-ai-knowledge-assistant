@@ -2,6 +2,7 @@ from sqlalchemy import ForeignKey, Integer, Text, DateTime, JSON
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 from app.db.base import Base
+from pgvector.sqlalchemy import Vector
 
 
 class Chunk(Base):
@@ -20,7 +21,10 @@ class Chunk(Base):
     token_count: Mapped[int] = mapped_column(Integer, nullable=True)
 
     # pgvector will replace this type below
-    embedding_vector: Mapped[list[float] | None] = mapped_column(JSON, nullable=True)
+    embedding_vector: Mapped[list[float]] = mapped_column(
+        Vector(384),
+        nullable=False,
+    )
 
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 

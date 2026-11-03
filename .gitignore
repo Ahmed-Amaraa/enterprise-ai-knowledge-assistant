@@ -249,3 +249,11 @@ env/
 build/
 dist/
 *.egg-info/
+
+# Generated application data
+backend/output/
+qdrant_data/
+qdrant_storage/
+
+# Personal project description
+description.txt

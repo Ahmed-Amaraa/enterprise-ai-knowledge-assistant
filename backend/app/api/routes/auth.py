@@ -23,16 +23,36 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
     response_model=UserResponse,
     status_code=status.HTTP_201_CREATED,
 )
+@router.post(
+    "/signup",
+    response_model=UserResponse,
+    status_code=status.HTTP_201_CREATED,
+)
 async def register(
     user_data: UserCreate,
     db: Session = Depends(get_db),
 ):
     service = AuthService(UserRepository(db))
 
+    username = user_data.username
+    if not username:
+        base_username = user_data.email.split("@")[0]
+        base_username = "".join(c for c in base_username if c.isalnum() or c in "._-")[:40]
+        if not base_username:
+            base_username = "user"
+        username = base_username
+
+        repo = UserRepository(db)
+        counter = 1
+        while repo.get_by_username(username):
+            suffix = str(counter)
+            username = f"{base_username[:50 - len(suffix)]}{suffix}"
+            counter += 1
+
     try:
         return service.register_user(
             email=user_data.email,
-            username=user_data.username,
+            username=username,
             password=user_data.password,
             full_name=user_data.full_name,
         )
